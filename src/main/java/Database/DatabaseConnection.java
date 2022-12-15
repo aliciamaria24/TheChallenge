@@ -1,4 +1,4 @@
-package com.example.thechallenge;
+package Database;
 
 public class DatabaseConnection {
 
