@@ -1,14 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="FXML.GUILogin"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXML.GUILogin">
+   <children>
+      <BorderPane layoutX="28.0" prefHeight="394.0" prefWidth="531.0">
+         <left>
+            <AnchorPane prefHeight="394.0" prefWidth="200.0" style="-fx-background-color: #45abff;" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="8.0" layoutY="71.0" text="R-PROTOTYPE" textFill="WHITE">
+                     <font>
+                        <Font name="Steppes TT" size="36.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="22.0" layoutY="129.0" prefHeight="25.0" prefWidth="261.0" text="Innovative, air, productive" textAlignment="RIGHT" textFill="WHITE">
+                     <font>
+                        <Font name="JetBrains Mono Thin" size="14.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
+         </left>
+         <right>
+            <AnchorPane prefHeight="394.0" prefWidth="255.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+               <children>
+                  <TextField layoutX="53.0" layoutY="159.0" promptText="Gebruikersnaam" style="-fx-background-color: transparant; -fx-border-color: #45abff ;" />
+                  <TextField layoutX="53.0" layoutY="197.0" promptText="Wachtwoord" style="-fx-background-color: transparant; -fx-border-color: #45abff;" />
+                  <Button layoutX="103.0" layoutY="244.0" mnemonicParsing="false" style="-fx-background-color: #45abff;" text="Login" textFill="WHITE" />
+               </children></AnchorPane>
+         </right>
+      </BorderPane>
+   </children>
 </AnchorPane>
