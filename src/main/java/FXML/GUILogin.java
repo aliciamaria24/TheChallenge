@@ -1,4 +1,6 @@
 package FXML;
 
-public class GUILogin {
+import javafx.fxml.Initializable;
+
+public class GUILogin  {
 }

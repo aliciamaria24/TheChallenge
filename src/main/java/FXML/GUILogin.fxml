@@ -4,11 +4,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXML.GUILogin">
+<AnchorPane prefHeight="376.0" prefWidth="566.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXML.GUILogin">
    <children>
       <BorderPane layoutX="28.0" prefHeight="394.0" prefWidth="531.0">
          <left>
-            <AnchorPane prefHeight="394.0" prefWidth="200.0" style="-fx-background-color: #45abff;" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="394.0" prefWidth="291.0" style="-fx-background-color: #45abff;" BorderPane.alignment="CENTER">
                <children>
                   <Label layoutX="8.0" layoutY="71.0" text="R-PROTOTYPE" textFill="WHITE">
                      <font>
@@ -23,7 +23,7 @@
                </children></AnchorPane>
          </left>
          <right>
-            <AnchorPane prefHeight="394.0" prefWidth="255.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="394.0" prefWidth="244.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
                <children>
                   <TextField layoutX="53.0" layoutY="159.0" promptText="Gebruikersnaam" style="-fx-background-color: transparant; -fx-border-color: #45abff ;" />
                   <TextField layoutX="53.0" layoutY="197.0" promptText="Wachtwoord" style="-fx-background-color: transparant; -fx-border-color: #45abff;" />
