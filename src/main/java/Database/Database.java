@@ -11,12 +11,38 @@ public class Database {
         Database pro = new Database();
         pro.connect();
         //pro.createConnection();
-        createConnection();
-
+        while (true) {
+            createConnection();
+        }
     }
 
-    public static void createConnection() {
+    public static void insertbuiten(String tijdstip, float luchtkwaliteit_buiten_fijnstof) {
+        String sql = "INSERT INTO luchtkwaliteit_buiten(luchtkwaliteit_timestampbuiten, luchtkwaliteit_buiten_fijnstof) VALUES(?,?)";
         try {
+            PreparedStatement preparedStatement = connect().prepareStatement(sql);
+            preparedStatement.setString(1, tijdstip);
+            preparedStatement.setFloat(2, luchtkwaliteit_buiten_fijnstof);
+            preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    public static void insertbinnen(String tijdstip, float luchtkwaliteit_binnen_CO2) {
+        String sql = "INSERT INTO luchtkwaliteit_binnen(luchtkwaliteit_timestampbinnen, luchtkwaliteit_binnen_CO2) VALUES(?,?)";
+        try {
+            PreparedStatement preparedStatement = connect().prepareStatement(sql);
+            preparedStatement.setString(1, tijdstip);
+            preparedStatement.setFloat(2, luchtkwaliteit_binnen_CO2);
+            preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+
+    public static void createConnection() {
+        try { //dit haalt de laatste waardes uit de database
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "Amit23@");
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT luchtkwaliteit_binnen_CO2 FROM luchtkwaliteit_binnen ORDER BY luchtkwaliteit_binnen_id DESC LIMIT 1 ");
@@ -30,7 +56,7 @@ public class Database {
                 SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
-        try {
+        try { //dit haalt de laatste waardes van fijnstof
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "Amit23@");
             Statement stmt = con.createStatement();
             ResultSet luchtbuiten = stmt.executeQuery("SELECT luchtkwaliteit_buiten_fijnstof FROM luchtkwaliteit_buiten ORDER BY luchtkwaliteit_buiten_id DESC LIMIT 1 ");
@@ -45,7 +71,7 @@ public class Database {
         }
     }
 
-        private Connection connect () {
+        private static Connection connect() {
             Connection conn = null;
             String driver = "com.mysql.cj.jdbc.Driver";
             // MySQL connection string, pas zonodig het pad aan:
