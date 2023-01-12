@@ -25,9 +25,9 @@
          <right>
             <AnchorPane prefHeight="394.0" prefWidth="244.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
                <children>
-                  <TextField layoutX="53.0" layoutY="159.0" promptText="Gebruikersnaam" style="-fx-background-color: transparant; -fx-border-color: #45abff ;" />
-                  <TextField layoutX="53.0" layoutY="197.0" promptText="Wachtwoord" style="-fx-background-color: transparant; -fx-border-color: #45abff;" />
-                  <Button layoutX="103.0" layoutY="244.0" mnemonicParsing="false" style="-fx-background-color: #45abff;" text="Login" textFill="WHITE" />
+                  <TextField fx:id="txt" layoutX="53.0" layoutY="159.0" promptText="Gebruikersnaam" style="-fx-background-color: transparant; -fx-border-color: #45abff ;" />
+                  <TextField fx:id="password" layoutX="53.0" layoutY="197.0" promptText="Wachtwoord" style="-fx-background-color: transparant; -fx-border-color: #45abff;" />
+                  <Button fx:id="btn" layoutX="103.0" layoutY="244.0" mnemonicParsing="false" style="-fx-background-color: #45abff;" text="Login" textFill="WHITE" />
                </children></AnchorPane>
          </right>
       </BorderPane>
