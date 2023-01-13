@@ -1,4 +1,4 @@
-package challengep;
+package com.example.RPrototype;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
