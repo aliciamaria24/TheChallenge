@@ -1,5 +1,5 @@
 package com.example.RPrototype;
 
-public class DeviceController {
+import javafx.event.ActionEvent;
 
-}
+public class DeviceController {}
