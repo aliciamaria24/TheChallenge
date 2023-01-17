@@ -2,9 +2,11 @@ package com.example.RPrototype;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Window;
 
 import java.sql.*;
 import java.util.Scanner;
@@ -22,7 +24,7 @@ public class LoginController {
     private Label info;
 
     @FXML
-    private TextField password;
+    private TextField passwordField;
 
     @FXML
     private TextField username;
@@ -32,6 +34,55 @@ public class LoginController {
     void loginButtonOnAction(ActionEvent event) {
         info.setText("JIJ STREST MIJ");
 
+    }
+
+
+    public void login(ActionEvent event) throws SQLException {
+
+        Window owner = loginButton.getScene().getWindow();
+
+        System.out.println(username.getText());
+        System.out.println(passwordField.getText());
+
+        if (username.getText().isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                    "Please enter your email id");
+            return;
+        }
+        if (passwordField.getText().isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                    "Please enter a password");
+            return;
+        }
+
+        String emailId = username.getText();
+        String password = passwordField.getText();
+
+        JdbcDao jdbcDao = new JdbcDao();
+        boolean flag = jdbcDao.validate(emailId, password);
+
+        if (!flag) {
+            infoBox("Please enter correct Email and Password", null, "Failed");
+        } else {
+            infoBox("Login Successful!", null, "Failed");
+        }
+    }
+
+    public static void infoBox(String infoMessage, String headerText, String title) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setContentText(infoMessage);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        alert.showAndWait();
+    }
+
+    private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(owner);
+        alert.show();
     }
 
 
