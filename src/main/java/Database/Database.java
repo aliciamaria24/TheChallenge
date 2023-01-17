@@ -1,90 +1,55 @@
 package Database;
 
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 
 public class Database {
 
     public static void main(String[] args) {
-        Database pro = new Database();
-        pro.connect();
-        //pro.createConnection();
-        while (true) {
-            createConnection();
-        }
-    }
-
-    public static void insertbuiten(String tijdstip, float luchtkwaliteit_buiten_fijnstof) {
-        String sql = "INSERT INTO luchtkwaliteit_buiten(luchtkwaliteit_timestampbuiten, luchtkwaliteit_buiten_fijnstof) VALUES(?,?)";
+        Connection conn = connect(); // hier wordt er met een connect method een statement object gecreeërd met behulp van een connectie
         try {
-            PreparedStatement preparedStatement = connect().prepareStatement(sql);
-            preparedStatement.setString(1, tijdstip);
-            preparedStatement.setFloat(2, luchtkwaliteit_buiten_fijnstof);
-            preparedStatement.executeUpdate();
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-    }
+            Statement stmt = conn.createStatement();
 
-    public static void insertbinnen(String tijdstip, float luchtkwaliteit_binnen_CO2) {
-        String sql = "INSERT INTO luchtkwaliteit_binnen(luchtkwaliteit_timestampbinnen, luchtkwaliteit_binnen_CO2) VALUES(?,?)";
-        try {
-            PreparedStatement preparedStatement = connect().prepareStatement(sql);
-            preparedStatement.setString(1, tijdstip);
-            preparedStatement.setFloat(2, luchtkwaliteit_binnen_CO2);
-            preparedStatement.executeUpdate();
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-    }
-
-
-    public static void createConnection() {
-        try { //dit haalt de laatste waardes uit de database
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "Amit23@");
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT luchtkwaliteit_binnen_CO2 FROM luchtkwaliteit_binnen ORDER BY luchtkwaliteit_binnen_id DESC LIMIT 1 ");
-            while (rs.next()) {
-                int gemiddelde = rs.getInt("luchtkwaliteit_binnen_CO2");
-                System.out.println(gemiddelde);
-
+            String checkSQL = "SELECT time FROM connection_status ORDER BY time DESC LIMIT 1"; // sql statement om de meest recente "time" value van de connection_status table
+            ResultSet rs = stmt.executeQuery(checkSQL); // het resultaat daarvan wordt hier opgeslagen
+            Timestamp lastConnected = null;
+            if (rs.next()) {
+                lastConnected = rs.getTimestamp(1); // en hier wordt de volgende result set opgehaald en opgeslagen in variable Lastconnected
             }
-            System.out.println("Database Connection Succes");
-        } catch (
-                SQLException ex) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try { //dit haalt de laatste waardes van fijnstof
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "Amit23@");
-            Statement stmt = con.createStatement();
-            ResultSet luchtbuiten = stmt.executeQuery("SELECT luchtkwaliteit_buiten_fijnstof FROM luchtkwaliteit_buiten ORDER BY luchtkwaliteit_buiten_id DESC LIMIT 1 ");
-            while (luchtbuiten.next()) {
-                int gemiddelde = luchtbuiten.getInt("luchtkwaliteit_buiten_fijnstof");
-                System.out.println(gemiddelde);
+            long threshold = 1*60*1000; // 1 minute in milliseconds. Hier is er per x ( in dit geval 1) minuten een treshold. Dit betekend na elke minuut als er weer connectie wordt gemaakt dan wordt dit ingevoert in de database.
+            if(lastConnected == null || lastConnected.getTime() + threshold < System.currentTimeMillis()) {
+                String insertSQL = "INSERT INTO connection_status (status,time) VALUES ('connected',DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i:%s'))";
+                stmt.executeUpdate(insertSQL); // connectie met database is gemaakt en de waardes 'connected' en tijd van inlog worden vastgelegd en ingevoerd.
+                System.out.println("Connected to the database");
+            } else {
+                System.out.println("Already connected to the database"); // Als er te vaak binnen 1 minuut connectie gemaakt probeert te worden. Zorgt ervoor dat de database niet volloopt met inloggegevens.
             }
-        } catch (
-                SQLException ex) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close(); // hier wordt de database connectie afgesloten
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
     }
-
     private static Connection connect() {
         Connection conn = null;
-        String driver = "com.mysql.cj.jdbc.Driver";
-        // MySQL connection string, pas zonodig het pad aan:
-        String connection = "jdbc:mysql://localhost:3306/project";
-        String user = "root";
-        String password = "Amit23@";
+        String driver = "com.mysql.cj.jdbc.Driver"; //
+        // MySQL connection string
+        String connection = "jdbc:mysql://localhost:3306/project"; // hier wordt met de driver connectie gemaakt met de database 'project'
+        String user = "root"; // username
+        String password = "Amit23@"; // wachtwoord
         try {
             Class.forName(driver);
             conn = DriverManager.getConnection(connection, user, password);
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            System.err.println(e.getMessage()); // als er een bijzonderheid plaatsvindt dan geeft het een error bericht
         }
-        return conn;
+        return conn; // hier gaat het weer terug naar de object connectie
     }
 
 }
