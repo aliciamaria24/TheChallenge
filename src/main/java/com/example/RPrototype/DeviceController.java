@@ -6,10 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import com.fazecast.jSerialComm.SerialPort;
 import javafx.stage.Window;
@@ -33,10 +30,10 @@ public class DeviceController {
     @FXML
     private Button LogOut;
     @FXML
-    private Label NotNecessary;
+    private Button NotNecessary;
 
     @FXML
-    private Button AirButton;
+    private ToggleButton AirButton;
 
 
     @FXML
@@ -116,17 +113,27 @@ public class DeviceController {
                 dataswitch = false; //switch naar port van CO2
             }
 
-            if (CO2 && fijnstof) {
-                NotNecessary.setText("Not necessary to open a window");
-                return;
-            } else if (CO2 || !CO2 && !fijnstof) {
-                NotNecessary.setText("Not safe to open a window");
-                return;
-            } else if (!CO2 && fijnstof) {
-                NotNecessary.setText("Open a window to improve producivity");
-                return;
+//            if (CO2 && fijnstof) {
+//                NotNecessary.setText("Not necessary to open a window");
+//            } else if (CO2 || !CO2 && !fijnstof) {
+//                NotNecessary.setText("Not safe to open a window");
+//            } else if (!CO2 && fijnstof) {
+//                NotNecessary.setText("Open a window to improve producivity");
+//            }
 
-            }
+
+//            if (CO2 && fijnstof) {
+//                showAlert(Alert.AlertType.ERROR,
+//                        "ALERT WINDOW", "Not necessarry to open a window");
+//
+//            } else if (CO2 || !CO2 && !fijnstof) {
+//                showAlert(Alert.AlertType.ERROR,
+//                        "ALERT WINDOW", "Not safe to open a window");
+//
+//            } else if (!CO2 && fijnstof) {
+//                showAlert(Alert.AlertType.ERROR,
+//                        "ALERT WINDOW", "Open a window to improve productivity");
+//            }
 
 
         }

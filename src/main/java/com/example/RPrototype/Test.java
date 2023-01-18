@@ -62,18 +62,6 @@ public class Test {
                 dataswitch = false; //switch naar port van CO2
             }
 
-            if (CO2 && fijnstof) {
-                showAlert(Alert.AlertType.ERROR,
-                        "ALERT WINDOW", "Not necessarry to open a window");
-                return;
-            } else if (CO2 || !CO2 && !fijnstof) {
-                showAlert(Alert.AlertType.ERROR,
-                        "ALERT WINDOW", "Not safe to open a window");
-
-            } else if (!CO2 && fijnstof) {
-                showAlert(Alert.AlertType.ERROR,
-                        "ALERT WINDOW", "Open a window to improve productivity");
-            }
 
 
         }
