@@ -17,6 +17,38 @@ public class DeviceController {
     private Scene scene;
     private Parent root;
 
+    @FXML
+    private Text CO2Safe;
+
+    @FXML
+    private Text CO2Unhealthy;
+
+    @FXML
+    private Text KamerNaam;
+
+    @FXML
+    private Button LogOut;
+
+    @FXML
+    private Text NotNecessary;
+
+    @FXML
+    private Text NotSafe;
+
+    @FXML
+    private Text OpenWindow;
+
+    @FXML
+    private Text PMSafe;
+
+    @FXML
+    private Text PMUnhealthy;
+
+    @FXML
+    private Button gaNaarSettings;
+
+
+
 
     public void goToLogin(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("GUILogin.fxml"));
