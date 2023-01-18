@@ -86,12 +86,7 @@ public class LoginController {
         if (!flag) {
             infoBox("Please enter correct Email and Password", null, "Failed");
         } else {
-            infoBox("Login Successful!", null, "Succes");
-            Parent root = FXMLLoader.load(getClass().getResource("GuiRdevice.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+            switchToScene(event);
         }
     }
 

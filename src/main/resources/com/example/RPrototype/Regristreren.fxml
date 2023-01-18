@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.RPrototype.LoginController">
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.RPrototype.RegristrerenController">
    <children>
       <BorderPane layoutX="28.0" prefHeight="394.0" prefWidth="531.0">
          <left>
@@ -36,7 +36,7 @@
             <AnchorPane prefHeight="394.0" prefWidth="244.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
                <children>
                   <TextField fx:id="Email" layoutX="46.0" layoutY="197.0" promptText="Email" style="-fx-background-color: transparant; -fx-border-color: #45abff ;" />
-                  <Button fx:id="RegisterButton" layoutX="92.0" layoutY="293.0" mnemonicParsing="false" style="-fx-background-color: #45abff;" text="Register" textFill="WHITE" />
+                  <Button fx:id="RegisterButton" layoutX="92.0" layoutY="293.0" mnemonicParsing="false" onAction="#register" style="-fx-background-color: #45abff;" text="Register" textFill="WHITE" />
                   <Label layoutX="64.0" layoutY="65.0" text="REGISTER" textFill="#45abff">
                      <font>
                         <Font name="Courier New" size="24.0" />

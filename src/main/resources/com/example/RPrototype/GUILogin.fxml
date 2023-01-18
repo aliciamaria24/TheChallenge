@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.RPrototype.LoginController">
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.RPrototype.LoginController">
    <children>
       <BorderPane layoutX="28.0" prefHeight="394.0" prefWidth="531.0">
          <left>
@@ -43,7 +43,7 @@
                      </font>
                   </Label>
                   <Label fx:id="info" layoutX="47.0" layoutY="127.0" textFill="#c92929" />
-                  <PasswordField layoutX="47.0" layoutY="197.0" prefHeight="25.0" prefWidth="151.0" promptText="Password" style="-fx-background-color: transparant; -fx-border-color: #45abff;" />
+                  <PasswordField fx:id="passwordF" layoutX="47.0" layoutY="197.0" prefHeight="25.0" prefWidth="151.0" promptText="Password" style="-fx-background-color: transparant; -fx-border-color: #45abff;" />
                </children></AnchorPane>
          </right>
       </BorderPane>

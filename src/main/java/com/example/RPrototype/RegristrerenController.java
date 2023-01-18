@@ -1,17 +1,26 @@
 package com.example.RPrototype;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 
 public class RegristrerenController {
+
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
 
     @FXML
     private TextField Email;
@@ -28,12 +37,28 @@ public class RegristrerenController {
     @FXML
     private Button RegisterButton;
 
+
     @FXML
-    private Button SwitchLogin;
+    public void switchToLogin(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("GUILogin.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }
+    public void RegisterSuccesfull(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("GuiRdevice.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }
 
 
     @FXML
-    public void register(ActionEvent event) throws SQLException {
+    public void register(ActionEvent event) throws SQLException, IOException {
 
         Window owner = RegisterButton.getScene().getWindow();
 
@@ -72,8 +97,9 @@ public class RegristrerenController {
         JdbcDao jdbcDao = new JdbcDao();
         jdbcDao.insertRecord(firstName, lastName, emailId, password);
 
-        showAlert(Alert.AlertType.CONFIRMATION, owner, "Registration Successful!",
-                "Welcome " + FirstName.getText());
+        RegisterSuccesfull(event);
+
+
     }
 
     private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {

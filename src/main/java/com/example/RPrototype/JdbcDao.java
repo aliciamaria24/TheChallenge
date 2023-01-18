@@ -12,6 +12,7 @@ public class JdbcDao {
     private static final String DATABASE_USERNAME = "root";
     private static final String DATABASE_PASSWORD = "Amit23@";
     private static final String SELECT_QUERY = "SELECT * FROM gebruiker  WHERE emailadres = ? and wachtwoord = ?";
+    private static final String INSERT_QUERY = "INSERT INTO gebruiker (voornaam, achternaam, emailadres, wachtwoord) VALUES (?, ?, ?, ?)";
 
     public boolean validate(String emailadres, String wachtwoord)throws SQLException {
 
