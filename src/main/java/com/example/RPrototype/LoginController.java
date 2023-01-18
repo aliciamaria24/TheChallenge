@@ -22,11 +22,13 @@ public class LoginController {
 
     Scanner scanner = new Scanner(System.in);
 
+    //Hier weer het zelfde, dit is weer zodat je alles makkelijk in 1x kunt aanpassen
     private Stage stage;
     private Scene scene;
     private Parent root;
 
 
+    /*Dit is weer de skeleton van FXML File, dit zijn dus ID's die aan de Buttons, labels en textfield hangen*/
     @FXML
     private Button loginButton;
 
@@ -40,6 +42,11 @@ public class LoginController {
     private TextField username;
 
 
+    /*
+    * Als we op een button klikken zoals uitloggen, home gebruiken we de methode SwitchScene.
+    * Deze methode zorgt ervoor dat als je ergens op klikt of scrolt of wat je ook gebruikt, naar
+    * de GuiRdevice gaat!
+    * */
     @FXML
     public void switchToScene(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("GuiRdevice.fxml"));
@@ -50,6 +57,9 @@ public class LoginController {
 
     }
 
+
+
+    //Hier geld het zelfde als hierboven maar dan voor Regristreren.
     @FXML
     public void switchToRegister(ActionEvent event) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("Regristreren.fxml"));
@@ -61,6 +71,12 @@ public class LoginController {
     }
 
 
+    /*
+    * Deze methode zorgt ervoor dat er ingelogd kan worden met behulp van onze klas JdbcDao.
+    * Hij print de username en password die gegeven is
+    * dan komt de If statement, dit zorgt ervoor dat als een veld leeg is, er een Aler komt
+    * dat het veld ingevoerd moet worden
+    * */
     public void login(ActionEvent event) throws SQLException, IOException {
 
         Window owner = loginButton.getScene().getWindow();
@@ -78,6 +94,11 @@ public class LoginController {
                     "Please enter a password");
             return;
         }
+        /*
+        * Hier roepen we de class JdbcDao aan en zeggen we dus dat we een nieuwe connectie willen.
+        * Dan roepen we de method Validate aan die we in de Class JdbcDao hebben gemaakt.
+        * Hier kijkt die dus pas of email en wachtwoord overeen komt met een wachtwoord en email uit Database
+        * */
 
         String emailId = username.getText();
         String password = passwordF.getText();
@@ -85,6 +106,11 @@ public class LoginController {
         JdbcDao jdbcDao = new JdbcDao();
         boolean flag = jdbcDao.validate(emailId, password);
 
+        /*
+        * Als dit niet het geval is, dus het klopt niet dan vraagt die of je een correcte Email en Wachtwoord
+        * wilt invullen
+        * Zo niet, dan roept die de method SwitchToScene(event) aan zodat deze naar GuiRdevice gaat.
+        * */
         if (!flag) {
             infoBox("Please enter correct Email and Password", null, "Failed");
         } else {
@@ -92,6 +118,12 @@ public class LoginController {
         }
     }
 
+    /*
+    * Dit is de info box method, die een string infomessage, string header text en string title heeft
+    * Deze 3 worden in de alert weergegeven. eerst word een nieuwe alert gemaakt
+    * dan word er per Variabele infomessage, Headertext en Title allert gemaakt
+    * aan het eind laat die de hele altert zien.
+    * */
     public static void infoBox(String infoMessage, String headerText, String title) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setContentText(infoMessage);
@@ -100,6 +132,11 @@ public class LoginController {
         alert.showAndWait();
     }
 
+    /*
+    * Hier word de method ShowAlert gemaakt, waar het alertype, owner, title en message word weergegeven.
+    * Elke keer als je een alert maakt, moet je zelf het type geven, title, message en owner.
+    * Nadat je dat hebt gedaan laat die de alert zien.
+    * */
     private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);

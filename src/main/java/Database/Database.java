@@ -3,6 +3,11 @@ package Database;
 import java.sql.*;
 
 public class Database {
+    /*
+    * Deze file laat zien of we een database connectie hebben
+    * Dit zorgt ervoor dat we niet zo diep in onze fouten hoeven te kijken en dus hier
+    * gelijk kunnen zien of het komt omdat we geen connectie hebben of wel.
+    * */
 
     public static void main(String[] args) {
         Connection conn = connect(); // hier wordt er met een connect method een statement object gecreeërd met behulp van een connectie

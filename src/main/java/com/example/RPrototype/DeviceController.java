@@ -22,6 +22,13 @@ import java.util.Scanner;
 
 public class DeviceController {
 
+    /*
+    * Alle @FXML zijn afkomstig van de FXML files. In de GUI kan je ID's meegeven aan buttons
+    * deze buttons staan dus hier onder weergegeven. Dit zodat je in Java methodes kan schrijven en deze
+    * kan koppelen aan een Button, TextField, ToggleButton etc.
+    * */
+
+
     @FXML
     private Button CO2Safe;
 
@@ -36,19 +43,34 @@ public class DeviceController {
     @FXML
     private ToggleButton AirButton;
 
-
     @FXML
     private Button gaNaarSettings;
+
+
+    /*
+    * Deze Stage, Scene en Parent zijn private, zodat we deze niet kunnen aanroepen in een andere klas.
+    * Deze 3 variabelen worden gebruikt om de code in de Methode goToLogin sneller en makkelijker te kunnen
+    * schrijven.
+    * */
     private Stage stage;
     private Scene scene;
     private Parent root;
 
+
+    /*
+    * Deze methode zorgt ervoor dat je van Scene kan wisselen.
+    * Je kan deze methode in je GUI koppelen aan een button, en als je daar op klikt, gebeurd dat.
+    * */
     public void goToLogin(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("GUILogin.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
+        Parent root = FXMLLoader.load(getClass().getResource("GUILogin.fxml"));// Parent laat zijn dat die het hoofd gedeelte is van de code.
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow(); //Stage haalt de "Window" op, zoals aan het einde .getWindow -> zorgt ervoor dat de juiste window word opgehaald
+        scene = new Scene(root);//Scene laat de nieuwe scene binnen komen
+        /*
+        * beeld je hier in dat er een persoon (scene) op het podium (stage) staat. Wat hier dus eigenlijk staat
+        * is dat die dus de juiste persoon op het podium laat zien.
+        * */
         stage.setScene(scene);
-        stage.show();
+        stage.show(); // Hier laat je daadwerkelijk de stage zien.
 
     }
 
