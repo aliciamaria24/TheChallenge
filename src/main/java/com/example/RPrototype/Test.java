@@ -1,72 +1,18 @@
 package com.example.RPrototype;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import com.fazecast.jSerialComm.SerialPort;
-import javafx.stage.Window;
-import org.w3c.dom.Text;
-
-import java.sql.SQLException;
-import java.text.DecimalFormat;
-import java.util.Scanner;
+import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Scanner;
 
-public class DeviceController {
-
-    @FXML
-    private Button CO2Safe;
-
-    @FXML
-    private Button CO2Unhealthy;
-
-    @FXML
-    private Button LogOut;
-    @FXML
-    private Label NotNecessary;
-
-    @FXML
-    private Button AirButton;
-
-
-    @FXML
-    private Button gaNaarSettings;
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
-
-    public void goToLogin(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("GUILogin.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-
-    }
-
-    public void goToSettings(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("GUILogin.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-
-    }
-
+public class Test {
     static SerialPort chosenPort;
 
     //static int x = 0;
-    public void MeasureData(ActionEvent event) throws SQLException, IOException {
+    public static void main(String[] args) {
         boolean dataswitch = false; //false:neem eerst co2 true:neem fijnstof
         boolean CO2 = true; // true: safe false:unhealthy
         boolean fijnstof = true; //true: safe false: unhealthy
@@ -117,15 +63,16 @@ public class DeviceController {
             }
 
             if (CO2 && fijnstof) {
-                NotNecessary.setText("Not necessary to open a window");
+                showAlert(Alert.AlertType.ERROR,
+                        "ALERT WINDOW", "Not necessarry to open a window");
                 return;
             } else if (CO2 || !CO2 && !fijnstof) {
-                NotNecessary.setText("Not safe to open a window");
-                return;
-            } else if (!CO2 && fijnstof) {
-                NotNecessary.setText("Open a window to improve producivity");
-                return;
+                showAlert(Alert.AlertType.ERROR,
+                        "ALERT WINDOW", "Not safe to open a window");
 
+            } else if (!CO2 && fijnstof) {
+                showAlert(Alert.AlertType.ERROR,
+                        "ALERT WINDOW", "Open a window to improve productivity");
             }
 
 
@@ -140,7 +87,5 @@ public class DeviceController {
         alert.setContentText(message);
         alert.show();
     }
-
-
 
 }

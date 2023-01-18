@@ -12,31 +12,10 @@
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="362.0" prefWidth="552.0" style="-fx-background-color: #256F46;">
                     <children>
-                        <Text fx:id="KamerNaam" fill="LIGHTYELLOW" layoutX="261.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
-                            <font>
-                                <Font size="20.0" />
-                            </font>
-                        </Text>
                         <Text layoutX="104.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Air quality:" wrappingWidth="98.44140625">
                             <font>
                                 <Font size="20.0" />
                             </font>
-                            <fill>
-                                <LinearGradient endX="1.0" endY="1.0">
-                                    <stops>
-                                        <Stop>
-                                            <color>
-                                                <Color red="0.5874999761581421" green="1.0" blue="0.25" />
-                                            </color>
-                                        </Stop>
-                                        <Stop offset="1.0">
-                                            <color>
-                                                <Color red="1.0" green="0.5333333611488342" />
-                                            </color>
-                                        </Stop>
-                                    </stops>
-                                </LinearGradient>
-                            </fill>
                         </Text>
                         <Text fill="LIGHTYELLOW" layoutX="297.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Particulate Matter concentration">
                             <font>
@@ -46,154 +25,7 @@
                             <font>
                                 <Font size="20.0" />
                             </font></Text>
-                        <Text fx:id="CO2Safe" layoutX="104.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Safe">
-                            <font>
-                                <Font size="20.0" />
-                            </font>
-                            <fill>
-                                <LinearGradient endX="1.0" endY="1.0">
-                                    <stops>
-                                        <Stop>
-                                            <color>
-                                                <Color red="0.18885348737239838" green="1.0" />
-                                            </color>
-                                        </Stop>
-                                        <Stop offset="1.0">
-                                            <color>
-                                                <Color red="1.0" green="1.0" blue="1.0" />
-                                            </color>
-                                        </Stop>
-                                    </stops>
-                                </LinearGradient>
-                            </fill>
-                        </Text>
-                        <Text fx:id="PMUnhealthy" layoutX="431.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unhealthy" wrappingWidth="94.017578125">
-                            <font>
-                                <Font size="20.0" />
-                            </font>
-                            <fill>
-                                <LinearGradient endX="1.0" endY="1.0">
-                                    <stops>
-                                        <Stop>
-                                            <color>
-                                                <Color red="1.0" green="0.550000011920929" />
-                                            </color>
-                                        </Stop>
-                                        <Stop offset="1.0">
-                                            <color>
-                                                <Color red="1.0" />
-                                            </color>
-                                        </Stop>
-                                    </stops>
-                                </LinearGradient>
-                            </fill>
-                        </Text>
-                        <Text fx:id="OpenWindow" layoutX="140.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please open a window to boost productivity" underline="true">
-                            <fill>
-                                <LinearGradient endX="1.0" endY="1.0">
-                                    <stops>
-                                        <Stop>
-                                            <color>
-                                                <Color red="1.0" green="0.6166666746139526" />
-                                            </color>
-                                        </Stop>
-                                        <Stop offset="1.0">
-                                            <color>
-                                                <Color red="1.0" green="0.9745222926139832" />
-                                            </color>
-                                        </Stop>
-                                    </stops>
-                                </LinearGradient>
-                            </fill>
-                            <font>
-                                <Font size="20.0" />
-                            </font>
-                        </Text>
-                        <Text fx:id="CO2Unhealthy" layoutX="165.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unhealthy" wrappingWidth="94.017578125">
-                            <font>
-                                <Font size="20.0" />
-                            </font>
-                            <fill>
-                                <LinearGradient endX="1.0" endY="1.0">
-                                    <stops>
-                                        <Stop>
-                                            <color>
-                                                <Color red="1.0" green="0.550000011920929" />
-                                            </color>
-                                        </Stop>
-                                        <Stop offset="1.0">
-                                            <color>
-                                                <Color red="1.0" />
-                                            </color>
-                                        </Stop>
-                                    </stops>
-                                </LinearGradient>
-                            </fill>
-                        </Text>
-                        <Text fx:id="PMSafe" layoutX="340.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Safe">
-                            <font>
-                                <Font size="20.0" />
-                            </font>
-                            <fill>
-                                <LinearGradient endX="1.0" endY="1.0">
-                                    <stops>
-                                        <Stop>
-                                            <color>
-                                                <Color red="0.18885348737239838" green="1.0" />
-                                            </color>
-                                        </Stop>
-                                        <Stop offset="1.0">
-                                            <color>
-                                                <Color red="1.0" green="1.0" blue="1.0" />
-                                            </color>
-                                        </Stop>
-                                    </stops>
-                                </LinearGradient>
-                            </fill>
-                        </Text>
-                        <Text fx:id="NotNecessary" layoutX="159.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="It is not necessary to open a window">
-                            <fill>
-                                <LinearGradient endX="1.0" endY="1.0">
-                                    <stops>
-                                        <Stop>
-                                            <color>
-                                                <Color red="0.0833333358168602" green="1.0" />
-                                            </color>
-                                        </Stop>
-                                        <Stop offset="1.0">
-                                            <color>
-                                                <Color red="1.0" green="1.0" blue="1.0" />
-                                            </color>
-                                        </Stop>
-                                    </stops>
-                                </LinearGradient>
-                            </fill>
-                            <font>
-                                <Font size="20.0" />
-                            </font>
-                        </Text>
-                        <Text fx:id="NotSafe" layoutX="184.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="It is not safe to open a window" underline="true">
-                            <fill>
-                                <LinearGradient endX="1.0" endY="1.0">
-                                    <stops>
-                                        <Stop>
-                                            <color>
-                                                <Color red="1.0" />
-                                            </color>
-                                        </Stop>
-                                        <Stop offset="1.0">
-                                            <color>
-                                                <Color red="1.0" green="0.5159235596656799" />
-                                            </color>
-                                        </Stop>
-                                    </stops>
-                                </LinearGradient>
-                            </fill>
-                            <font>
-                                <Font size="20.0" />
-                            </font>
-                        </Text>
-                        <Button fx:id="LogOut" layoutY="9.0" mnemonicParsing="false" onAction="#goToLogin" prefHeight="31.0" prefWidth="94.0" style="-fx-background-color: #ffffff;" text="LOG OUT" textFill="#296320">
+                        <Button fx:id="LogOut" layoutY="9.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="94.0" style="-fx-background-color: #ffffff;" text="LOG OUT" textFill="#296320">
                             <font>
                                 <Font name="Courier New" size="14.0" />
                             </font>
@@ -203,6 +35,24 @@
                            <Font name="Courier New" size="14.0" />
                         </font>
                      </Button>
+                     <Label fx:id="NotNecessary" layoutX="306.0" layoutY="153.0" onKeyPressed="#MeasureData">
+                        <textFill>
+                           <LinearGradient endX="1.0" endY="1.0">
+                              <stops>
+                                 <Stop>
+                                    <color>
+                                       <Color red="0.21666666865348816" green="1.0" />
+                                    </color>
+                                 </Stop>
+                                 <Stop offset="1.0">
+                                    <color>
+                                       <Color green="1.0" blue="0.9166666865348816" />
+                                    </color>
+                                 </Stop>
+                              </stops>
+                           </LinearGradient>
+                        </textFill>
+                     </Label>
                     </children></AnchorPane>
             </content>
         </Tab>
