@@ -41,7 +41,7 @@ public class LoginController {
     private TextField username;
 
 
-    public void switchToDevice(ActionEvent event) throws IOException{
+    public void switchToScene(ActionEvent event) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("GuiRdevice.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -51,7 +51,7 @@ public class LoginController {
     }
 
 
-    public void login(ActionEvent event) throws SQLException {
+    public void login(ActionEvent event) throws SQLException, IOException {
 
         Window owner = loginButton.getScene().getWindow();
 

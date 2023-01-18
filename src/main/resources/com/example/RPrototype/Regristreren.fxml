@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.RPrototype.LoginController">
+    <children>
+        <BorderPane layoutX="28.0" prefHeight="394.0" prefWidth="531.0">
+            <left>
+                <AnchorPane prefHeight="394.0" prefWidth="289.0" style="-fx-background-color: #45abff;" BorderPane.alignment="CENTER">
+                    <children>
+                        <Label layoutX="50.0" layoutY="71.0" prefHeight="44.0" prefWidth="189.0" text="R-DEVICE" textFill="WHITE">
+                            <font>
+                                <Font name="Steppes TT" size="36.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="63.0" layoutY="115.0" prefHeight="25.0" prefWidth="163.0" text="Air quality control" textAlignment="CENTER" textFill="WHITE">
+                            <font>
+                                <Font name="Courier New" size="14.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="40.0" layoutY="212.0" prefHeight="20.0" prefWidth="209.0" text="Already have an account?" textFill="WHITE">
+                            <font>
+                                <Font name="Courier New" size="14.0" />
+                            </font>
+                        </Label>
+                        <Button fx:id="Login" layoutX="121.0" layoutY="242.0" mnemonicParsing="false" style="-fx-background-color: #ffffff;" text="LOGIN" textFill="#2db6ff">
+                            <font>
+                                <Font size="11.0" />
+                            </font>
+                        </Button>
+                    </children></AnchorPane>
+            </left>
+            <right>
+                <AnchorPane prefHeight="394.0" prefWidth="244.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+                    <children>
+                        <TextField fx:id="username" layoutX="47.0" layoutY="156.0" promptText="Email" style="-fx-background-color: transparant; -fx-border-color: #45abff ;" />
+                        <Button fx:id="loginButton" layoutX="92.0" layoutY="246.0" mnemonicParsing="false" onAction="#login" style="-fx-background-color: #45abff;" text="Register" textFill="WHITE" />
+                        <Label layoutX="64.0" layoutY="61.0" text="REGISTER" textFill="#45abff">
+                            <font>
+                                <Font name="Courier New" size="24.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="info" layoutX="47.0" layoutY="127.0" textFill="#c92929" />
+                        <TextField fx:id="username1" layoutX="47.0" layoutY="114.0" promptText="Last name" style="-fx-background-color: transparant; -fx-border-color: #45abff ;" />
+                        <PasswordField layoutX="47.0" layoutY="197.0" prefHeight="25.0" prefWidth="152.0" promptText="Password" style="-fx-background-color: transparant; -fx-border-color: #45abff;" />
+                    </children></AnchorPane>
+            </right>
+        </BorderPane>
+    </children>
+</AnchorPane>
