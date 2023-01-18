@@ -11,7 +11,7 @@ public class JdbcDao {
     private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/project";
     private static final String DATABASE_USERNAME = "root";
     private static final String DATABASE_PASSWORD = "Amit23@";
-    private static final String SELECT_QUERY = "SELECT * FROM gebruiker  WHERE gebruiker_emailadres = ? and gebruiker_wachtwoord = ?";
+    private static final String SELECT_QUERY = "SELECT * FROM gebruiker  WHERE emailadres = ? and wachtwoord = ?";
 
     public boolean validate(String gebruiker_email, String gebruiker_wachtwoord)throws SQLException {
 

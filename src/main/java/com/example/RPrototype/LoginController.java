@@ -6,10 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
@@ -35,7 +32,7 @@ public class LoginController {
     private Label info;
 
     @FXML
-    private TextField passwordField;
+    private PasswordField passwordF;
 
     @FXML
     private TextField username;
@@ -56,21 +53,21 @@ public class LoginController {
         Window owner = loginButton.getScene().getWindow();
 
         System.out.println(username.getText());
-        System.out.println(passwordField.getText());
+        System.out.println(passwordF.getText());
 
         if (username.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
                     "Please enter your email id");
             return;
         }
-        if (passwordField.getText().isEmpty()) {
+        if (passwordF.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
                     "Please enter a password");
             return;
         }
 
         String emailId = username.getText();
-        String password = passwordField.getText();
+        String password = passwordF.getText();
 
         JdbcDao jdbcDao = new JdbcDao();
         boolean flag = jdbcDao.validate(emailId, password);
