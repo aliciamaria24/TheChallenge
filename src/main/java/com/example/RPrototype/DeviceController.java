@@ -1,6 +1,7 @@
 package com.example.RPrototype;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -30,7 +31,7 @@ public class DeviceController {
     @FXML
     private Button LogOut;
     @FXML
-    private Button NotNecessary;
+    private TextField NotNecessary;
 
     @FXML
     private ToggleButton AirButton;
@@ -113,13 +114,15 @@ public class DeviceController {
                 dataswitch = false; //switch naar port van CO2
             }
 
-//            if (CO2 && fijnstof) {
-//                NotNecessary.setText("Not necessary to open a window");
-//            } else if (CO2 || !CO2 && !fijnstof) {
-//                NotNecessary.setText("Not safe to open a window");
-//            } else if (!CO2 && fijnstof) {
-//                NotNecessary.setText("Open a window to improve producivity");
-//            }
+
+                if (CO2 && fijnstof) {
+                    showText(event);
+                } else if (CO2 || !CO2 && !fijnstof) {
+                    showNotSafe(event);
+                } else if (!CO2 && fijnstof) {
+                    showSafeText(event);
+                }
+            }
 
 
 //            if (CO2 && fijnstof) {
@@ -138,8 +141,17 @@ public class DeviceController {
 
         }
 
+        public void showText(ActionEvent event)throws IOException{
+           NotNecessary.setText("Not necessary to open a window");
+        }
 
-    }
+        public void showSafeText(ActionEvent event)throws IOException{
+        NotNecessary.setText("Open window to improve productivity");
+        }
+        public void showNotSafe(ActionEvent event)throws IOException{
+        NotNecessary.setText("It's not safe to open a window");
+        }
+
     public static void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);

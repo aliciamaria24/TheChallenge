@@ -16,11 +16,11 @@
                                 <Font size="20.0" />
                             </font>
                         </Text>
-                        <Text fill="LIGHTYELLOW" layoutX="297.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Particulate Matter concentration">
+                        <Text fill="LIGHTYELLOW" layoutX="297.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Outdoors">
                             <font>
                                 <Font size="20.0" />
                             </font></Text>
-                        <Text fill="LIGHTYELLOW" layoutX="101.0" layoutY="316.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CO2 concentration">
+                        <Text fill="LIGHTYELLOW" layoutX="101.0" layoutY="316.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Indoor">
                             <font>
                                 <Font size="20.0" />
                             </font></Text>
@@ -35,6 +35,7 @@
                         </font>
                      </Button>
                      <ToggleButton fx:id="AirButton" layoutX="253.0" layoutY="135.0" mnemonicParsing="false" onAction="#MeasureData" text="ToggleButton" />
+                     <TextField fx:id="NotNecessary" layoutX="223.0" layoutY="191.0" onAction="#MeasureData" />
                     </children></AnchorPane>
             </content>
         </Tab>
