@@ -13,7 +13,7 @@ public class JdbcDao {
     private static final String DATABASE_PASSWORD = "Amit23@";
     private static final String SELECT_QUERY = "SELECT * FROM gebruiker  WHERE emailadres = ? and wachtwoord = ?";
 
-    public boolean validate(String gebruiker_email, String gebruiker_wachtwoord)throws SQLException {
+    public boolean validate(String emailadres, String wachtwoord)throws SQLException {
 
         // Step 1: Establishing a Connection and
         // try-with-resource statement will auto close the connection.
@@ -22,8 +22,8 @@ public class JdbcDao {
 
              // Step 2:Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_QUERY)) {
-            preparedStatement.setString(1, gebruiker_email);
-            preparedStatement.setString(2, gebruiker_wachtwoord);
+            preparedStatement.setString(1, emailadres);
+            preparedStatement.setString(2, wachtwoord);
 
             System.out.println(preparedStatement);
 
@@ -38,6 +38,28 @@ public class JdbcDao {
             printSQLException(e);
         }
         return false;
+    }
+    public void insertRecord(String firstName, String lastName, String Email, String Password) throws SQLException {
+
+        // Step 1: Establishing a Connection and
+        // try-with-resource statement will auto close the connection.
+        try (Connection connection = DriverManager
+                .getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+
+             // Step 2:Create a statement using connection object
+             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY)) {
+            preparedStatement.setString(1, firstName);
+            preparedStatement.setString(2, lastName);
+            preparedStatement.setString(3, Email);
+            preparedStatement.setString(4, Password);
+
+            System.out.println(preparedStatement);
+            // Step 3: Execute the query or update query
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            // print SQL exception information
+            printSQLException(e);
+        }
     }
 
     public static void printSQLException(SQLException ex) {

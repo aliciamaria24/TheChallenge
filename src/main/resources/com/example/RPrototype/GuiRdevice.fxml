@@ -11,7 +11,7 @@
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="362.0" prefWidth="552.0" style="-fx-background-color: #256F46;">
                     <children>
-                        <Text fill="LIGHTYELLOW" layoutX="14.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The R-Device">
+                        <Text fill="LIGHTYELLOW" layoutX="261.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The R-Device">
                             <font>
                                 <Font size="20.0" />
                             </font>
@@ -45,7 +45,7 @@
                             <font>
                                 <Font size="20.0" />
                             </font></Text>
-                        <Text layoutX="104.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Safe">
+                        <Text fx:id="CO2Safe" layoutX="104.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Safe">
                             <font>
                                 <Font size="20.0" />
                             </font>
@@ -66,7 +66,7 @@
                                 </LinearGradient>
                             </fill>
                         </Text>
-                        <Text layoutX="431.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unhealthy" wrappingWidth="94.017578125">
+                        <Text fx:id="PMUnhealthy" layoutX="431.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unhealthy" wrappingWidth="94.017578125">
                             <font>
                                 <Font size="20.0" />
                             </font>
@@ -87,7 +87,7 @@
                                 </LinearGradient>
                             </fill>
                         </Text>
-                        <Text layoutX="140.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please open a window to boost productivity" underline="true">
+                        <Text fx:id="OpenWindow" layoutX="140.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please open a window to boost productivity" underline="true">
                             <fill>
                                 <LinearGradient endX="1.0" endY="1.0">
                                     <stops>
@@ -108,7 +108,7 @@
                                 <Font size="20.0" />
                             </font>
                         </Text>
-                        <Text layoutX="165.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unhealthy" wrappingWidth="94.017578125">
+                        <Text fx:id="CO2Unhealthy" layoutX="165.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unhealthy" wrappingWidth="94.017578125">
                             <font>
                                 <Font size="20.0" />
                             </font>
@@ -129,7 +129,7 @@
                                 </LinearGradient>
                             </fill>
                         </Text>
-                        <Text layoutX="340.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Safe">
+                        <Text fx:id="PMSafe" layoutX="340.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Safe">
                             <font>
                                 <Font size="20.0" />
                             </font>
@@ -150,7 +150,7 @@
                                 </LinearGradient>
                             </fill>
                         </Text>
-                        <Text layoutX="159.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="It is not necessary to open a window">
+                        <Text fx:id="NotNecessary" layoutX="159.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="It is not necessary to open a window">
                             <fill>
                                 <LinearGradient endX="1.0" endY="1.0">
                                     <stops>
@@ -171,7 +171,7 @@
                                 <Font size="20.0" />
                             </font>
                         </Text>
-                        <Text layoutX="184.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="It is not safe to open a window" underline="true">
+                        <Text fx:id="NotSafe" layoutX="184.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="It is not safe to open a window" underline="true">
                             <fill>
                                 <LinearGradient endX="1.0" endY="1.0">
                                     <stops>
@@ -192,6 +192,11 @@
                                 <Font size="20.0" />
                             </font>
                         </Text>
+                        <Button fx:id="LogOut" layoutX="543.0" layoutY="19.0" mnemonicParsing="false" onAction="#goToLogin" style="-fx-background-color: #ffffff;" text="Log out" textFill="#296320">
+                            <font>
+                                <Font name="Courier New" size="14.0" />
+                            </font>
+                        </Button>
                     </children></AnchorPane>
             </content>
         </Tab>

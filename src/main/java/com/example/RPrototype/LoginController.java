@@ -38,8 +38,19 @@ public class LoginController {
     private TextField username;
 
 
-    public void switchToScene(ActionEvent event) throws IOException{
+    @FXML
+    public void switchToScene(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("GuiRdevice.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }
+
+    @FXML
+    public void switchToRegister(ActionEvent event) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("Regristreren.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -75,7 +86,12 @@ public class LoginController {
         if (!flag) {
             infoBox("Please enter correct Email and Password", null, "Failed");
         } else {
-            infoBox("Login Successful!", null, "Failed");
+            infoBox("Login Successful!", null, "Succes");
+            Parent root = FXMLLoader.load(getClass().getResource("GuiRdevice.fxml"));
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         }
     }
 
@@ -99,20 +115,20 @@ public class LoginController {
 
 
 
-    private static Connection connect() {
-        Connection conn = null;
-        String driver = "com.mysql.cj.jdbc.Driver";
-        // MySQL connection string, pas zonodig het pad aan:
-        String connection = "jdbc:mysql://localhost:3306/project";
-        String user = "root";
-        String password = "Amit23@";
-        try {
-            Class.forName(driver);
-            conn = DriverManager.getConnection(connection, user, password);
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-        return conn;
-    }
+//    private static Connection connect() {
+//        Connection conn = null;
+//        String driver = "com.mysql.cj.jdbc.Driver";
+//        // MySQL connection string, pas zonodig het pad aan:
+//        String connection = "jdbc:mysql://localhost:3306/project";
+//        String user = "root";
+//        String password = "Amit23@";
+//        try {
+//            Class.forName(driver);
+//            conn = DriverManager.getConnection(connection, user, password);
+//        } catch (Exception e) {
+//            System.err.println(e.getMessage());
+//        }
+//        return conn;
+//    }
 
 }
