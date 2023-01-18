@@ -25,7 +25,7 @@
                         <Font name="Courier New" size="14.0" />
                      </font>
                   </Label>
-                  <Button fx:id="SwitchLogin" layoutX="121.0" layoutY="242.0" mnemonicParsing="false" style="-fx-background-color: #ffffff;" text="LOGIN" textFill="#2db6ff">
+                  <Button fx:id="SwitchLogin" layoutX="121.0" layoutY="242.0" mnemonicParsing="false" onAction="#switchToLogin" style="-fx-background-color: #ffffff;" text="LOGIN" textFill="#2db6ff">
                      <font>
                         <Font size="11.0" />
                      </font>
