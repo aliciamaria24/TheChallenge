@@ -38,6 +38,12 @@ public class JdbcDao {
 
     private static final String INSERT_ROOM_DATA = "INSERT INTO ruimte (ruimte_naam, m3, locatie_omschrijving) VALUES (?, ?, ?)";
 
+    private static final String UPDATE_ROOM = "UPDATE ruimte SET ruimte_naam = ?, m3 = ?, locatie_omschrijving = ?";
+
+    private static final String UPDATE_PASSWORD = "UPDATE gebruiker SET wachtwoord = ?";
+
+    private static final String SELECT_ROOM_NAME = "SELECT * FROM ruimte WHERE ruimte_naam = ?";
+
 
     /*
      * Deze method gaat kijken of de input in de GUI overeenkomt met wat wij in ons database
@@ -104,7 +110,27 @@ public class JdbcDao {
             printSQLException(e);
         }
     }
-public void insertRoomData(String roomName, String m2, String room_location) throws SQLException {
+
+    public void showRoomName(String room_name) throws SQLException {
+
+        // Step 1: Establishing a Connection and
+        // try-with-resource statement will auto close the connection.
+        try (Connection connection = DriverManager
+                .getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+
+             // Step 2:Create a statement using connection object
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ROOM_NAME)) {
+            preparedStatement.setString(1, room_name);
+
+            System.out.println(preparedStatement);
+            // Step 3: Execute the query or update query
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            // print SQL exception information
+            printSQLException(e);
+        }
+    }
+public void insertRoomData(String room_name, String m3, String room_location) throws SQLException {
 
         // Step 1: Establishing a Connection and
         // try-with-resource statement will auto close the connection.
@@ -113,9 +139,51 @@ public void insertRoomData(String roomName, String m2, String room_location) thr
 
              // Step 2:Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_ROOM_DATA)) {
-            preparedStatement.setString(1, roomName);
-            preparedStatement.setString(2, m2);
+            preparedStatement.setString(1, room_name);
+            preparedStatement.setString(2, m3);
             preparedStatement.setString(3, room_location);
+
+            System.out.println(preparedStatement);
+            // Step 3: Execute the query or update query
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            // print SQL exception information
+            printSQLException(e);
+        }
+    }
+    public void updateRoomData(String room_name, String m3, String room_location) throws SQLException {
+
+        // Step 1: Establishing a Connection and
+        // try-with-resource statement will auto close the connection.
+        try (Connection connection = DriverManager
+                .getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+
+             // Step 2:Create a statement using connection object
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_ROOM)) {
+            preparedStatement.setString(1, room_name);
+            preparedStatement.setString(2, m3);
+            preparedStatement.setString(3, room_location);
+
+            System.out.println(preparedStatement);
+            // Step 3: Execute the query or update query
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            // print SQL exception information
+            printSQLException(e);
+        }
+    }
+
+    public void updatePassword(String password, String password2) throws SQLException {
+
+        // Step 1: Establishing a Connection and
+        // try-with-resource statement will auto close the connection.
+        try (Connection connection = DriverManager
+                .getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+
+             // Step 2:Create a statement using connection object
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PASSWORD)) {
+            preparedStatement.setString(1, password);
+            preparedStatement.setString(2, password2);
 
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query

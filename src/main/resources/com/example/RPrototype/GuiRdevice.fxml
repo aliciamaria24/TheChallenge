@@ -21,10 +21,25 @@
                            <Font name="Courier New" size="14.0" />
                         </font>
                      </Button>
-                     <ToggleButton fx:id="AirButton" layoutX="253.0" layoutY="147.0" mnemonicParsing="false" onAction="#MeasureData" prefHeight="44.0" prefWidth="133.0" style="-fx-background-color: #ffffff;" text="START">
+                     <ToggleButton fx:id="AirButton" layoutX="252.0" layoutY="204.0" mnemonicParsing="false" onAction="#MeasureData" prefHeight="44.0" prefWidth="133.0" style="-fx-background-color: #ffffff;" text="START">
                         <font>
                            <Font name="Courier New" size="24.0" />
                         </font></ToggleButton>
+                     <Label fx:id="roomName" layoutX="221.0" layoutY="3.0" onInputMethodTextChanged="#showText" text="" textFill="WHITE">
+                        <font>
+                           <Font name="Courier New" size="36.0" />
+                        </font>
+                     </Label>
+                     <Label layoutX="272.0" layoutY="3.0" text="Welcome!" textFill="WHITE">
+                        <font>
+                           <Font name="Dubai Regular" size="24.0" />
+                        </font>
+                     </Label>
+                     <Label layoutX="230.0" layoutY="165.0" text="Click start to measure!" textFill="WHITE">
+                        <font>
+                           <Font size="18.0" />
+                        </font>
+                     </Label>
                     </children></AnchorPane>
             </content>
         </Tab>

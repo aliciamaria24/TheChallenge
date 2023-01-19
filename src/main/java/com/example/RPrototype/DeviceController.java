@@ -46,6 +46,11 @@ public class DeviceController {
     @FXML
     private Button gaNaarSettings;
 
+    @FXML
+    private Label roomName;
+    @FXML
+    private Label userName;
+
 
     /*
      * Deze Stage, Scene en Parent zijn private, zodat we deze niet kunnen aanroepen in een andere klas.
@@ -56,6 +61,14 @@ public class DeviceController {
     private Scene scene;
     private Parent root;
 
+    public void showText(ActionEvent event) throws IOException, SQLException {
+        System.out.println(roomName.getText());
+        String RoomName = roomName.getText();
+        JdbcDao jdbcDao = new JdbcDao();
+        jdbcDao.showRoomName(RoomName);
+        roomName.setText(RoomName);
+
+    }
 
     /*
      * Deze methode zorgt ervoor dat je van Scene kan wisselen.
@@ -75,7 +88,7 @@ public class DeviceController {
     }
 
     public void goToSettings(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("guiSettings.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("SettingsMenu.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -98,9 +111,9 @@ public class DeviceController {
 
         while (true) {
             //switchen van COM ports
-            if (!dataswitch) {
+            if (!dataswitch) {//CO2
                 chosenPort = SerialPort.getCommPort("COM3");
-            } else {
+            } else {//fijnstof
                 chosenPort = SerialPort.getCommPort("COM6");
             }
             chosenPort.setComPortTimeouts(SerialPort.TIMEOUT_SCANNER, 0, 0);
@@ -120,7 +133,7 @@ public class DeviceController {
             //----- close port
             chosenPort.closePort();
             if (!dataswitch) { //CO2
-                if (number < 1000) {
+                if (number < 800) {
                     CO2 = true;
                 } else {
                     CO2 = false;
@@ -128,7 +141,7 @@ public class DeviceController {
 
                 dataswitch = true; //switch naar port van fijnstof
             } else { // fijnstof
-                if (number < 1000) {
+                if (number < 800) {
                     fijnstof = true;
                 } else {
                     fijnstof = false;
@@ -140,6 +153,14 @@ public class DeviceController {
             if ((CO2 || !CO2) && !fijnstof) {
 //                NotNecessary.setText("Not safe to open a window");
                 infoBox("Not safe to open a window", null, "ALERT!");
+                MeasureData(event);
+                break;
+
+            }
+
+            if (CO2 && fijnstof) {
+//                NotNecessary.setText("Not safe to open a window");
+                infoBox("Not necessary to open window", null, "ALERT!");
                 MeasureData(event);
                 break;
 

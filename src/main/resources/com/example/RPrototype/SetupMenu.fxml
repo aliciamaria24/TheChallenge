@@ -20,9 +20,9 @@
                         <TextField fx:id="nameOfRoom" layoutX="398.0" layoutY="146.0" promptText="NAME" />
                         <TextField fx:id="SizeOfRoom" layoutX="398.0" layoutY="183.0" promptText="SIZE" />
                         <TextField fx:id="LocationOfRoom" layoutX="399.0" layoutY="225.0" promptText="LOCATION" />
-                        <Label layoutX="141.0" layoutY="60.0" text="Hi! Welcome to your setup ☺" textFill="WHITE">
+                        <Label layoutX="174.0" layoutY="58.0" text="Hi! Welcome to your setup ☺" textFill="WHITE">
                            <font>
-                              <Font name="Courier New" size="24.0" />
+                              <Font name="Dubai Regular" size="24.0" />
                            </font>
                         </Label>
                         <Label layoutX="120.0" layoutY="184.0" text="How big is the room M2:" textFill="WHITE">
@@ -30,7 +30,7 @@
                               <Font name="Courier New" size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="28.0" layoutY="147.0" text="Whatt is the name of your room:" textFill="WHITE">
+                        <Label layoutX="44.0" layoutY="147.0" text="What is the name of your room:" textFill="WHITE">
                            <font>
                               <Font name="Courier New" size="18.0" />
                            </font>
