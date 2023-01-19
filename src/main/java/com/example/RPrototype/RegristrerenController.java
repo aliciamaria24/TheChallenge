@@ -39,13 +39,13 @@ public class RegristrerenController {
 
 
     /*
-    * Spreekt voor zichzelf, hier weer een switch gemaakt zodat deze gekoppeld kan worden aan bv een Button
-    * En dan switched naar het login scherm. De IOException laat zien of er enige foutmeldingen zijn
-    * die bij de IO foutmeldingen hoort. Ik kan dit niet echt beter uitleggen...
-    *
-    * De Action Event word gebruikt als er een actie word uitgeverd om iets te laten gebeuren.
-    * Dus bijvoorbeeld een button click.
-    * */
+     * Spreekt voor zichzelf, hier weer een switch gemaakt zodat deze gekoppeld kan worden aan bv een Button
+     * En dan switched naar het login scherm. De IOException laat zien of er enige foutmeldingen zijn
+     * die bij de IO foutmeldingen hoort. Ik kan dit niet echt beter uitleggen...
+     *
+     * De Action Event word gebruikt als er een actie word uitgeverd om iets te laten gebeuren.
+     * Dus bijvoorbeeld een button click.
+     * */
     @FXML
     public void switchToLogin(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("GUILogin.fxml"));
@@ -55,8 +55,9 @@ public class RegristrerenController {
         stage.show();
 
     }
+
     public void RegisterSuccesfull(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("GuiRdevice.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("SetupMenu.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -66,11 +67,11 @@ public class RegristrerenController {
 
 
     /*
-    * Hier is de Methode Register, deze methode zorgt ervoor dat er iemand word geregristreerd en in het database
-    * komt.
-    * Hij print weer alle data uit in onze terminal wat is ingevoerd in de velden.
-    * Als er velden leeg zijn, laat die weer een alert zien.
-    * */
+     * Hier is de Methode Register, deze methode zorgt ervoor dat er iemand word geregristreerd en in het database
+     * komt.
+     * Hij print weer alle data uit in onze terminal wat is ingevoerd in de velden.
+     * Als er velden leeg zijn, laat die weer een alert zien.
+     * */
     @FXML
     public void register(ActionEvent event) throws SQLException, IOException {
 
@@ -109,10 +110,10 @@ public class RegristrerenController {
         String password = Password.getText();
 
         /*
-        * Hier connecten we weer met onze database en gebruiken we de methode InsertRecord die we daar
-        * in hebben geschreven. Dan roepen we de methode RegisterSuccesfull(event) aan, om weer van
-        * scene te switchen, in dit geval naar GuiRdevice.
-        * */
+         * Hier connecten we weer met onze database en gebruiken we de methode InsertRecord die we daar
+         * in hebben geschreven. Dan roepen we de methode RegisterSuccesfull(event) aan, om weer van
+         * scene te switchen, in dit geval naar GuiRdevice.
+         * */
         JdbcDao jdbcDao = new JdbcDao();
         jdbcDao.insertRecord(firstName, lastName, emailId, password);
 
@@ -122,10 +123,10 @@ public class RegristrerenController {
     }
 
     /*
-    * Hier weer de methode voor alert, omdat we deze in de vorige class
-    * private hebben gemaakt, kunnen we hem niet aanroepen en maken we hem hier dus weer.
-    * We zouden dit kunnen versimpelen om hem public te maken.
-    * */
+     * Hier weer de methode voor alert, omdat we deze in de vorige class
+     * private hebben gemaakt, kunnen we hem niet aanroepen en maken we hem hier dus weer.
+     * We zouden dit kunnen versimpelen om hem public te maken.
+     * */
 
     private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
         Alert alert = new Alert(alertType);
