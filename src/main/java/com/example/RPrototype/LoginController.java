@@ -1,6 +1,5 @@
 package com.example.RPrototype;
 
-import com.fazecast.jSerialComm.SerialPort;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,13 +9,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
-import java.sql.*;
+import java.sql.SQLException;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class LoginController {
 
@@ -41,6 +37,9 @@ public class LoginController {
     @FXML
     private TextField username;
 
+    @FXML
+    private Button RegisterButton;
+
 
     /*
      * Als we op een button klikken zoals uitloggen, home gebruiken we de methode SwitchScene.
@@ -60,8 +59,8 @@ public class LoginController {
 
     //Hier geld het zelfde als hierboven maar dan voor Regristreren.
     @FXML
-    public void switchToRegister(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("Regristreren.fxml"));
+    public void switchToDeviceCode(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("RegristratieCode.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

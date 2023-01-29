@@ -1,35 +1,26 @@
 package com.example.RPrototype;
 
-import java.io.IOException;
-import java.sql.SQLException;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 public class RegristrerenController {
 
+    private Parent parent;
     private Stage stage;
     private Scene scene;
-    private Parent root;
 
     @FXML
-    private TextField Email;
-
-    @FXML
-    private TextField FirstName;
-
-    @FXML
-    private TextField LastName;
+    private TextField DeviceCode;
 
     @FXML
     private PasswordField Password;
@@ -37,7 +28,26 @@ public class RegristrerenController {
     @FXML
     private Button RegisterButton;
 
+    @FXML
+    private Button SwitchLogin;
 
+    @FXML
+    private TextField Username;
+
+    @FXML
+    private Label info;
+
+
+
+    @FXML
+    public void switchToDeviceCode(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("RegristratieCode.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }
     /*
      * Spreekt voor zichzelf, hier weer een switch gemaakt zodat deze gekoppeld kan worden aan bv een Button
      * En dan switched naar het login scherm. De IOException laat zien of er enige foutmeldingen zijn
@@ -46,15 +56,6 @@ public class RegristrerenController {
      * De Action Event word gebruikt als er een actie word uitgeverd om iets te laten gebeuren.
      * Dus bijvoorbeeld een button click.
      * */
-    @FXML
-    public void switchToLogin(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("GUILogin.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-
-    }
 
     public void RegisterSuccesfull(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("SetupMenu.fxml"));
@@ -77,36 +78,22 @@ public class RegristrerenController {
 
         Window owner = RegisterButton.getScene().getWindow();
 
-        System.out.println(FirstName.getText());
-        System.out.println(LastName.getText());
-        System.out.println(Email.getText());
+        System.out.println(Username.getText());
         System.out.println(Password.getText());
 
-        if (FirstName.getText().isEmpty()) {
+        if (Username.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                    "Please enter your first name");
+                    "Please enter an username");
             return;
         }
 
-        if (LastName.getText().isEmpty()) {
-            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                    "Please enter your last name");
-            return;
-        }
-        if (Email.getText().isEmpty()) {
-            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                    "Please enter your email");
-            return;
-        }
         if (Password.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
                     "Please enter a password");
             return;
         }
 
-        String firstName = FirstName.getText();
-        String lastName = LastName.getText();
-        String emailId = Email.getText();
+        String username = Username.getText();
         String password = Password.getText();
 
         /*
@@ -115,7 +102,7 @@ public class RegristrerenController {
          * scene te switchen, in dit geval naar GuiRdevice.
          * */
         JdbcDao jdbcDao = new JdbcDao();
-        jdbcDao.insertRecord(firstName, lastName, emailId, password);
+        jdbcDao.insertRecord(username, password);
 
         RegisterSuccesfull(event);
 

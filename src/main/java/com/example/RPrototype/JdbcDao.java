@@ -21,9 +21,9 @@ public class JdbcDao {
      * Database url is gewoon de url van onze database
      * Alles spreekt eigenlijk wel voor zich
      * */
-    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/project";
+    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/rDevice";
     private static final String DATABASE_USERNAME = "root";
-    private static final String DATABASE_PASSWORD = "Amit23@";
+    private static final String DATABASE_PASSWORD = "root";
 
     /*
      * Deze SELECT query gebruiken we voor het inloggen, nogmaal, da zetten we zo neer zodat
@@ -33,16 +33,17 @@ public class JdbcDao {
      * INSET_QUERY word gebruikt om gebruikers te kunnen inserten. Dit gebruiken wij voor onze register
      * GUI
      * */
-    private static final String SELECT_QUERY = "SELECT * FROM gebruiker  WHERE emailadres = ? and wachtwoord = ?";
-    private static final String INSERT_QUERY = "INSERT INTO gebruiker (voornaam, achternaam, emailadres, wachtwoord) VALUES (?, ?, ?, ?)";
+    private static final String SELECT_QUERY = "SELECT * FROM gebruiker  WHERE voornaam = ? and wachtwoord = ?";
+    private static final String INSERT_QUERY = "INSERT INTO gebruiker (voornaam, wachtwoord) VALUES (?, ?)";
 
-    private static final String INSERT_ROOM_DATA = "INSERT INTO ruimte (ruimte_naam, m3, locatie_omschrijving) VALUES (?, ?, ?)";
+    private static final String INSERT_ROOM_DATA = "INSERT INTO ruimte (naamRuimte, plaatsRuimte, groteRuimte) VALUES (?, ?, ?)";
+    private static final String INSERT_DEVICE_CODE = "INSERT INTO apparaat (apparaatCode) VALUES (?)";
 
-    private static final String UPDATE_ROOM = "UPDATE ruimte SET ruimte_naam = ?, m3 = ?, locatie_omschrijving = ?";
+    private static final String UPDATE_ROOM = "UPDATE ruimte SET naamRuimte = ?, groteRuimte = ?, plaatsRuimte = ?";
 
     private static final String UPDATE_PASSWORD = "UPDATE gebruiker SET wachtwoord = ?";
 
-    private static final String SELECT_ROOM_NAME = "SELECT * FROM ruimte WHERE ruimte_naam = ?";
+    private static final String SELECT_ROOM_NAME = "SELECT * FROM ruimte WHERE naamRuimte = ?";
 
 
     /*
@@ -50,7 +51,7 @@ public class JdbcDao {
      * hebben staan en als dat wel zo is, dan word deze persoon toegelaten tot het volgende scherm
      * zo niet, word er een foutmelding weergegeven.
      * */
-    public boolean validate(String emailadres, String wachtwoord) throws SQLException {
+    public boolean validate(String username, String wachtwoord) throws SQLException {
 
         //TRY CATCH: Betekend dat die eerst probeert om connectie te maken
         try (Connection connection = DriverManager
@@ -58,7 +59,7 @@ public class JdbcDao {
 
              //Hier maakt die een statement waar die zegt dat emailadres op plek 1 moet en wachtwoord op 2
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_QUERY)) {
-            preparedStatement.setString(1, emailadres);
+            preparedStatement.setString(1, username);
             preparedStatement.setString(2, Hasher.getSHA256Hash(wachtwoord));
 
             //Dit is om te checken of het goed gaat, hij print in onze console uit wat we hebben ingevoerd.
@@ -88,7 +89,7 @@ public class JdbcDao {
      * dam excute die de query
      * in onze catch laat die weer zien wat er fout gaat.
      * */
-    public void insertRecord(String firstName, String lastName, String Email, String Password) throws SQLException {
+    public void insertRecord(String voornaam, String wachtwoord) throws SQLException {
 
         // Step 1: Establishing a Connection and
         // try-with-resource statement will auto close the connection.
@@ -97,10 +98,8 @@ public class JdbcDao {
 
              // Step 2:Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY)) {
-            preparedStatement.setString(1, firstName);
-            preparedStatement.setString(2, lastName);
-            preparedStatement.setString(3, Email);
-            preparedStatement.setString(4, Hasher.getSHA256Hash(Password));
+            preparedStatement.setString(1, voornaam);
+            preparedStatement.setString(2, Hasher.getSHA256Hash(wachtwoord));
 
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
@@ -111,7 +110,7 @@ public class JdbcDao {
         }
     }
 
-    public void showRoomName(String room_name) throws SQLException {
+    public void showRoomName(String kamerNaam) throws SQLException {
 
         // Step 1: Establishing a Connection and
         // try-with-resource statement will auto close the connection.
@@ -120,7 +119,7 @@ public class JdbcDao {
 
              // Step 2:Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ROOM_NAME)) {
-            preparedStatement.setString(1, room_name);
+            preparedStatement.setString(1, kamerNaam);
 
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
@@ -130,7 +129,27 @@ public class JdbcDao {
             printSQLException(e);
         }
     }
-public void insertRoomData(String room_name, String m3, String room_location) throws SQLException {
+
+    public void insertDevice(String deviceCode) throws SQLException {
+
+        // Step 1: Establishing a Connection and
+        // try-with-resource statement will auto close the connection.
+        try (Connection connection = DriverManager
+                .getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+
+             // Step 2:Create a statement using connection object
+             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_DEVICE_CODE)) {
+            preparedStatement.setString(1, deviceCode);
+
+            System.out.println(preparedStatement);
+            // Step 3: Execute the query or update query
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            // print SQL exception information
+            printSQLException(e);
+        }
+    }
+public void insertRoomData(String kamerNaam, String m3, String kamerPlaats) throws SQLException {
 
         // Step 1: Establishing a Connection and
         // try-with-resource statement will auto close the connection.
@@ -139,9 +158,9 @@ public void insertRoomData(String room_name, String m3, String room_location) th
 
              // Step 2:Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_ROOM_DATA)) {
-            preparedStatement.setString(1, room_name);
+            preparedStatement.setString(1, kamerNaam);
             preparedStatement.setString(2, m3);
-            preparedStatement.setString(3, room_location);
+            preparedStatement.setString(3, kamerPlaats);
 
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
@@ -151,7 +170,7 @@ public void insertRoomData(String room_name, String m3, String room_location) th
             printSQLException(e);
         }
     }
-    public void updateRoomData(String room_name, String m3, String room_location) throws SQLException {
+    public void updateRoomData(String kamerNaam, String m3, String kamerPlaats) throws SQLException {
 
         // Step 1: Establishing a Connection and
         // try-with-resource statement will auto close the connection.
@@ -160,9 +179,9 @@ public void insertRoomData(String room_name, String m3, String room_location) th
 
              // Step 2:Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_ROOM)) {
-            preparedStatement.setString(1, room_name);
+            preparedStatement.setString(1, kamerNaam);
             preparedStatement.setString(2, m3);
-            preparedStatement.setString(3, room_location);
+            preparedStatement.setString(3, kamerPlaats);
 
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
