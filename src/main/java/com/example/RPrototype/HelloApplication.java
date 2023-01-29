@@ -1,11 +1,19 @@
 package com.example.RPrototype;
 
+import com.fazecast.jSerialComm.SerialPort;
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.Scanner;
+
+import static javafx.application.Application.launch;
 
 /*
  * Deze applicatie is een extend van de Class Application.
@@ -30,12 +38,12 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
         stage.show();
 
-//        // HIER LEG IK ALICIA MARIA UIT HOE EEN HASHER WERKT :)
-//        String password = "HeelSterkWachtwoord123!";
-//        System.out.println("het wachtwoord is: " + password);
-//        // Hier ga ik het wachtwoord hashen
-//        String hash = Hasher.getSHA256Hash(password);
-//        System.out.println("hash: " + hash);
+        // Hier zie je hoe een hasher werkt
+        String password = "HeelSterkWachtwoord123!";
+        System.out.println("het wachtwoord is: " + password);
+        // Hier ga ik het wachtwoord hashen
+        String hash = Hasher.getSHA256Hash(password);
+        System.out.println("hash: " + hash);
     }
 
     /*

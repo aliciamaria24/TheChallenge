@@ -92,6 +92,11 @@ public class RegristrerenController {
                     "Please enter a password");
             return;
         }
+        if (isSafeString(FirstName.getText()) && isSafeString(LastName.getText()) && isSafeString(Email.getText()) && isSafeString(Password.getText())){
+            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                    "You are using a character that is not allowed. you can only use a-z A-Z ,.:;-@!");
+            return;
+        }
 
         String username = Username.getText();
         String password = Password.getText();
@@ -122,5 +127,13 @@ public class RegristrerenController {
         alert.setContentText(message);
         alert.initOwner(owner);
         alert.show();
+    }
+
+    public static boolean isSafeString(String input) {
+        // Regular expression to match potentially malicious characters in the input string
+        String pattern = "[^a-zA-Z0-9 .,;:@!-]";
+
+        // Use the matches() method of the Pattern class to check if the input string contains any malicious characters
+        return !input.matches(pattern);
     }
 }
