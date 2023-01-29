@@ -1,7 +1,7 @@
 package com.example.RPrototype;
 
+import com.fazecast.jSerialComm.SerialPort;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -9,15 +9,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import com.fazecast.jSerialComm.SerialPort;
-import javafx.stage.Window;
-import org.w3c.dom.Text;
-
-import java.sql.SQLException;
-import java.text.DecimalFormat;
-import java.util.Scanner;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class DeviceController {
@@ -111,12 +105,12 @@ public class DeviceController {
 
         while (true) {
             //switchen van COM ports
-            if (!dataswitch) {//CO2
-                chosenPort = SerialPort.getCommPort("COM3");
-            } else {//fijnstof
-                chosenPort = SerialPort.getCommPort("COM6");
-            }
-            chosenPort.setComPortTimeouts(SerialPort.TIMEOUT_SCANNER, 0, 0);
+//            if (!dataswitch) {//CO2
+            chosenPort = SerialPort.getCommPort("COM18");
+//            } else {//fijnstof
+//                chosenPort = SerialPort.getCommPort("COM6");
+
+//            chosenPort.setComPortTimeouts(SerialPort.TIMEOUT_SCANNER, 0, 0);
             //------openPort
             chosenPort.openPort();
 
@@ -139,42 +133,64 @@ public class DeviceController {
                     CO2 = false;
                 }
 
-                dataswitch = true; //switch naar port van fijnstof
-            } else { // fijnstof
-                if (number < 800) {
-                    fijnstof = true;
-                } else {
-                    fijnstof = false;
-                }
+//                dataswitch = true; //switch naar port van fijnstof
+//            } else { // fijnstof
+//                if (number < 800) {
+//                    fijnstof = true;
+//                } else {
+//                    fijnstof = false;
+//                }
 
                 dataswitch = false; //switch naar port van CO2
             }
 
-            if ((CO2 || !CO2) && !fijnstof) {
+
+//            if ((CO2 || !CO2) && !fijnstof) {
+////                NotNecessary.setText("Not safe to open a window");
+//                infoBox("Not safe to open a window", null, "ALERT!");
+//                MeasureData(event);
+//                break;
+//
+//            }
+
+            if (CO2 || !CO2) {
 //                NotNecessary.setText("Not safe to open a window");
                 infoBox("Not safe to open a window", null, "ALERT!");
                 MeasureData(event);
-                break;
 
             }
 
-            if (CO2 && fijnstof) {
+            if (CO2) {
 //                NotNecessary.setText("Not safe to open a window");
                 infoBox("Not necessary to open window", null, "ALERT!");
                 MeasureData(event);
-                break;
 
             }
 
-            if ((!CO2 && fijnstof)) {
+            if (CO2) {
 //                NotNecessary.setText("Please open window to boost productivity");
                 infoBox("Please open window to boost productivity", null, "ALERT!");
                 MeasureData(event);
-                break;
-            }
-        }
 
+            }
+//
+//            if (CO2 && fijnstof) {
+////                NotNecessary.setText("Not safe to open a window");
+//                infoBox("Not necessary to open window", null, "ALERT!");
+//                MeasureData(event);
+//
+//            }
+
+//            if ((!CO2 && fijnstof)) {
+////                NotNecessary.setText("Please open window to boost productivity");
+//                infoBox("Please open window to boost productivity", null, "ALERT!");
+//                MeasureData(event);
+//
+//            }
         }
+    }
+
+
     public static void infoBox(String infoMessage, String headerText, String title) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setContentText(infoMessage);
