@@ -19,28 +19,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class LoginController {
-
     Scanner scanner = new Scanner(System.in);
-
     //Hier weer het zelfde, dit is weer zodat je alles makkelijk in 1x kunt aanpassen
     private Stage stage;
     private Scene scene;
     private Parent root;
-
-
     /*Dit is weer de skeleton van FXML File, dit zijn dus ID's die aan de Buttons, labels en textfield hangen*/
     @FXML
     private Button loginButton;
-
     @FXML
     private Label info;
-
     @FXML
     private PasswordField passwordF;
-
     @FXML
     private TextField username;
-
 
     /*
      * Als we op een button klikken zoals uitloggen, home gebruiken we de methode SwitchScene.
@@ -57,7 +49,6 @@ public class LoginController {
 
     }
 
-
     //Hier geld het zelfde als hierboven maar dan voor Regristreren.
     @FXML
     public void switchToRegister(ActionEvent event) throws IOException {
@@ -69,7 +60,6 @@ public class LoginController {
 
     }
 
-
     /*
      * Deze methode zorgt ervoor dat er ingelogd kan worden met behulp van onze klas JdbcDao.
      * Hij print de username en password die gegeven is
@@ -77,12 +67,9 @@ public class LoginController {
      * dat het veld ingevoerd moet worden
      * */
     public void login(ActionEvent event) throws SQLException, IOException {
-
         Window owner = loginButton.getScene().getWindow();
-
         System.out.println(username.getText());
         System.out.println(passwordF.getText());
-
         if (username.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
                     "Please enter your email id");
@@ -98,13 +85,10 @@ public class LoginController {
          * Dan roepen we de method Validate aan die we in de Class JdbcDao hebben gemaakt.
          * Hier kijkt die dus pas of email en wachtwoord overeen komt met een wachtwoord en email uit Database
          * */
-
         String emailId = username.getText();
         String password = passwordF.getText();
-
         JdbcDao jdbcDao = new JdbcDao();
         boolean flag = jdbcDao.validate(emailId, password);
-
         /*
          * Als dit niet het geval is, dus het klopt niet dan vraagt die of je een correcte Email en Wachtwoord
          * wilt invullen
@@ -112,11 +96,14 @@ public class LoginController {
          * */
         if (!flag) {
             infoBox("Please enter correct Email and Password", null, "Failed");
-        } else {
+        }
+        else if (isSafeString(emailId) && isSafeString(password)){
+            infoBox("Don't try to hack us!", null, "Failed");
+        }
+        else {
             switchToScene(event);
         }
     }
-
 
     /*
      * Dit is de info box method, die een string infomessage, string header text en string title heeft
@@ -146,7 +133,13 @@ public class LoginController {
         alert.show();
     }
 
+    public static boolean isSafeString(String input) {
+        // Regular expression to match potentially malicious characters in the input string
+        String pattern = "[^a-zA-Z0-9 .,;:@!-]";
 
+        // Use the matches() method of the Pattern class to check if the input string contains any malicious characters
+        return !input.matches(pattern);
+    }
 //    private static Connection connect() {
 //        Connection conn = null;
 //        String driver = "com.mysql.cj.jdbc.Driver";
@@ -162,5 +155,4 @@ public class LoginController {
 //        }
 //        return conn;
 //    }
-
 }
