@@ -59,7 +59,7 @@ public class JdbcDao {
              //Hier maakt die een statement waar die zegt dat emailadres op plek 1 moet en wachtwoord op 2
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_QUERY)) {
             preparedStatement.setString(1, emailadres);
-            preparedStatement.setString(2, wachtwoord);
+            preparedStatement.setString(2, Hasher.getSHA256Hash(wachtwoord));
 
             //Dit is om te checken of het goed gaat, hij print in onze console uit wat we hebben ingevoerd.
             System.out.println(preparedStatement);
@@ -100,7 +100,7 @@ public class JdbcDao {
             preparedStatement.setString(1, firstName);
             preparedStatement.setString(2, lastName);
             preparedStatement.setString(3, Email);
-            preparedStatement.setString(4, Password);
+            preparedStatement.setString(4, Hasher.getSHA256Hash(Password));
 
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query

@@ -38,6 +38,12 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
         stage.show();
 
+        // HIER LEG IK ALICIA MARIA UIT HOE EEN HASHER WERKT :)
+        String password = "HeelSterkWachtwoord123!";
+        System.out.println("het wachtwoord is: " + password);
+        // Hier ga ik het wachtwoord hashen
+        String hash = Hasher.getSHA256Hash(password);
+        System.out.println("hash: " + hash);
     }
 
     /*
