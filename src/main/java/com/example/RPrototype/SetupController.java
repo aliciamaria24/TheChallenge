@@ -62,21 +62,22 @@ public class SetupController {
             return;
         }
 
-    String roomName = nameOfRoom.getText();
-    String sizeOfRoom = SizeOfRoom.getText();
-    String locationOfRoom = LocationOfRoom.getText();
+        String roomName = nameOfRoom.getText();
+        String locationOfRoom = LocationOfRoom.getText();
+        String sizeOfRoom = SizeOfRoom.getText();
 
-    /*
-     * Hier connecten we weer met onze database en gebruiken we de methode InsertRecord die we daar
-     * in hebben geschreven. Dan roepen we de methode RegisterSuccesfull(event) aan, om weer van
-     * scene te switchen, in dit geval naar GuiRdevice.
-     * */
-    JdbcDao jdbcDao = new JdbcDao();
-        jdbcDao.insertRoomData(roomName, sizeOfRoom, locationOfRoom);
 
-    switchToHome(event);
+        /*
+         * Hier connecten we weer met onze database en gebruiken we de methode InsertRecord die we daar
+         * in hebben geschreven. Dan roepen we de methode RegisterSuccesfull(event) aan, om weer van
+         * scene te switchen, in dit geval naar GuiRdevice.
+         * */
+        JdbcDao jdbcDao = new JdbcDao();
+        jdbcDao.insertRoomData(roomName, locationOfRoom, sizeOfRoom);
 
-}
+        switchToHome(event);
+
+    }
 
     private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
         Alert alert = new Alert(alertType);

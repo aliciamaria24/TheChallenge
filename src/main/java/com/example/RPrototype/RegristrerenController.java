@@ -134,6 +134,6 @@ public class RegristrerenController {
         String pattern = "[^a-zA-Z0-9 .,;:@!-]";
 
         // Use the matches() method of the Pattern class to check if the input string contains any malicious characters
-        return !input.matches(pattern);
+        return input.matches(pattern);
     }
 }
