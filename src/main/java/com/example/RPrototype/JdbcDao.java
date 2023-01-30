@@ -51,7 +51,7 @@ public class JdbcDao {
      * hebben staan en als dat wel zo is, dan word deze persoon toegelaten tot het volgende scherm
      * zo niet, word er een foutmelding weergegeven.
      * */
-    public boolean validate(String username, String wachtwoord) throws SQLException {
+    public boolean validate(String username, String password) throws SQLException {
 
         //TRY CATCH: Betekend dat die eerst probeert om connectie te maken
         try (Connection connection = DriverManager
@@ -60,7 +60,7 @@ public class JdbcDao {
              //Hier maakt die een statement waar die zegt dat emailadres op plek 1 moet en wachtwoord op 2
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_QUERY)) {
             preparedStatement.setString(1, username);
-            preparedStatement.setString(2, Hasher.getSHA256Hash(wachtwoord));
+            preparedStatement.setString(2, Hasher.getSHA256Hash(password));
 
             //Dit is om te checken of het goed gaat, hij print in onze console uit wat we hebben ingevoerd.
             System.out.println(preparedStatement);
@@ -89,7 +89,7 @@ public class JdbcDao {
      * dam excute die de query
      * in onze catch laat die weer zien wat er fout gaat.
      * */
-    public void insertRecord(String voornaam, String wachtwoord) throws SQLException {
+    public void insertRecord(String username, String password) throws SQLException {
 
         // Step 1: Establishing a Connection and
         // try-with-resource statement will auto close the connection.
@@ -98,8 +98,8 @@ public class JdbcDao {
 
              // Step 2:Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY)) {
-            preparedStatement.setString(1, voornaam);
-            preparedStatement.setString(2, Hasher.getSHA256Hash(wachtwoord));
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, Hasher.getSHA256Hash(password));
 
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
@@ -110,7 +110,7 @@ public class JdbcDao {
         }
     }
 
-    public void showRoomName(String kamerNaam) throws SQLException {
+    public void showRoomName(String roomName) throws SQLException {
 
         // Step 1: Establishing a Connection and
         // try-with-resource statement will auto close the connection.
@@ -119,7 +119,7 @@ public class JdbcDao {
 
              // Step 2:Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ROOM_NAME)) {
-            preparedStatement.setString(1, kamerNaam);
+            preparedStatement.setString(1, roomName);
 
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
@@ -149,7 +149,8 @@ public class JdbcDao {
             printSQLException(e);
         }
     }
-public void insertRoomData(String kamerNaam, String m3, String kamerPlaats) throws SQLException {
+
+    public void insertRoomData(String roomName, String roomPlace, String sizeRoom) throws SQLException {
 
         // Step 1: Establishing a Connection and
         // try-with-resource statement will auto close the connection.
@@ -158,9 +159,9 @@ public void insertRoomData(String kamerNaam, String m3, String kamerPlaats) thro
 
              // Step 2:Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_ROOM_DATA)) {
-            preparedStatement.setString(1, kamerNaam);
-            preparedStatement.setString(2, m3);
-            preparedStatement.setString(3, kamerPlaats);
+            preparedStatement.setString(1, roomName);
+            preparedStatement.setString(2, roomPlace);
+            preparedStatement.setString(3, sizeRoom);
 
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
@@ -170,7 +171,8 @@ public void insertRoomData(String kamerNaam, String m3, String kamerPlaats) thro
             printSQLException(e);
         }
     }
-    public void updateRoomData(String kamerNaam, String m3, String kamerPlaats) throws SQLException {
+
+    public void updateRoomData(String roomName, String roomPlace, String roomSize) throws SQLException {
 
         // Step 1: Establishing a Connection and
         // try-with-resource statement will auto close the connection.
@@ -179,9 +181,9 @@ public void insertRoomData(String kamerNaam, String m3, String kamerPlaats) thro
 
              // Step 2:Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_ROOM)) {
-            preparedStatement.setString(1, kamerNaam);
-            preparedStatement.setString(2, m3);
-            preparedStatement.setString(3, kamerPlaats);
+            preparedStatement.setString(1, roomName);
+            preparedStatement.setString(2, roomPlace);
+            preparedStatement.setString(3, roomSize);
 
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query

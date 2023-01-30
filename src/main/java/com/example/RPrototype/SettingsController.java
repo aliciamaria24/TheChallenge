@@ -116,7 +116,6 @@ public class SettingsController {
             jdbcDao.updatePassword(oldPass, Newpass);
 
 
-
         }
 
 

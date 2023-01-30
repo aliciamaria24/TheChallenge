@@ -1,6 +1,7 @@
 package com.example.RPrototype;
 
-import com.fazecast.jSerialComm.SerialPort;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,8 +12,9 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
-import java.util.Scanner;
+import java.util.ResourceBundle;
 
 public class DeviceController {
 
@@ -95,99 +97,15 @@ public class DeviceController {
     //static int x = 0;
 
     public void MeasureData(ActionEvent event) throws SQLException, IOException {
-        boolean dataswitch = false; //false:neem eerst co2 true:neem fijnstof
-        boolean CO2 = true; // true: safe false:unhealthy
-        boolean fijnstof = true; //true: safe false: unhealthy
-        //   int raamopen = 0; //0- raam hoeft niet open 1-raam moet open  2- is het niet safe om te openen
-
-// portnames ; COM3 en COM6 op AMIT PC
-
-
-        while (true) {
-            //switchen van COM ports
-//            if (!dataswitch) {//CO2
-            chosenPort = SerialPort.getCommPort("COM18");
-//            } else {//fijnstof
-//                chosenPort = SerialPort.getCommPort("COM6");
-
-//            chosenPort.setComPortTimeouts(SerialPort.TIMEOUT_SCANNER, 0, 0);
-            //------openPort
-            chosenPort.openPort();
-
-
-            Scanner scanner = new Scanner(chosenPort.getInputStream());
-
-            String line = scanner.nextLine();
-            int number = Integer.parseInt(line);
-            System.out.println(number);
-
-
-            scanner.close();
-
-            //----- close port
-            chosenPort.closePort();
-            if (!dataswitch) { //CO2
-                if (number < 800) {
-                    CO2 = true;
-                } else {
-                    CO2 = false;
-                }
-
-//                dataswitch = true; //switch naar port van fijnstof
-//            } else { // fijnstof
-//                if (number < 800) {
-//                    fijnstof = true;
-//                } else {
-//                    fijnstof = false;
-//                }
-
-                dataswitch = false; //switch naar port van CO2
-            }
-
-
-//            if ((CO2 || !CO2) && !fijnstof) {
-////                NotNecessary.setText("Not safe to open a window");
-//                infoBox("Not safe to open a window", null, "ALERT!");
-//                MeasureData(event);
-//                break;
-//
-//            }
-
-            if (CO2 || !CO2) {
-//                NotNecessary.setText("Not safe to open a window");
-                infoBox("Not safe to open a window", null, "ALERT!");
-                MeasureData(event);
-
-            }
-
-            if (CO2) {
-//                NotNecessary.setText("Not safe to open a window");
-                infoBox("Not necessary to open window", null, "ALERT!");
-                MeasureData(event);
-
-            }
-
-            if (CO2) {
-//                NotNecessary.setText("Please open window to boost productivity");
-                infoBox("Please open window to boost productivity", null, "ALERT!");
-                MeasureData(event);
-
-            }
-//
-//            if (CO2 && fijnstof) {
-////                NotNecessary.setText("Not safe to open a window");
-//                infoBox("Not necessary to open window", null, "ALERT!");
-//                MeasureData(event);
-//
-//            }
-
-//            if ((!CO2 && fijnstof)) {
-////                NotNecessary.setText("Please open window to boost productivity");
-//                infoBox("Please open window to boost productivity", null, "ALERT!");
-//                MeasureData(event);
-//
-//            }
+        COMPortReader cp = new COMPortReader("COM3", 115200);
+        cp.openPort();
+        int ppm = cp.readData();
+        System.out.println(ppm);
+        if (ppm > 4000) {
+            infoBox("Please open window to boost productivity", null, "ALERT!");
+            MeasureData(event);
         }
+        cp.closePort();
     }
 
 

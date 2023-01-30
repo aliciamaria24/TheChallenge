@@ -92,11 +92,9 @@ public class LoginController {
          * */
         if (!flag) {
             infoBox("Please enter correct Email and Password", null, "Failed");
-        }
-        else if (isSafeString(emailId) && isSafeString(password)){
+        } else if (isSafeString(emailId) && isSafeString(password)) {
             switchToScene(event);
-        }
-        else {
+        } else {
             infoBox("Don't try to hack us!", null, "Failed");
         }
     }

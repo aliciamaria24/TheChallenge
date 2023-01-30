@@ -1,11 +1,8 @@
 package com.example.RPrototype;
 
 import com.fazecast.jSerialComm.SerialPort;
-import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Test {
@@ -63,11 +60,11 @@ public class Test {
             }
 
 
-
         }
 
 
     }
+
     public static void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
