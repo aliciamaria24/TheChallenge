@@ -110,25 +110,6 @@ public class JdbcDao {
         }
     }
 
-    public void showRoomName(String roomName) throws SQLException {
-
-        // Step 1: Establishing a Connection and
-        // try-with-resource statement will auto close the connection.
-        try (Connection connection = DriverManager
-                .getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
-
-             // Step 2:Create a statement using connection object
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ROOM_NAME)) {
-            preparedStatement.setString(1, roomName);
-
-            System.out.println(preparedStatement);
-            // Step 3: Execute the query or update query
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            // print SQL exception information
-            printSQLException(e);
-        }
-    }
 
     public void insertDevice(String deviceCode) throws SQLException {
 

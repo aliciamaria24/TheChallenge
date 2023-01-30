@@ -29,11 +29,6 @@
                         <font>
                            <Font name="Courier New" size="24.0" />
                         </font></ToggleButton>
-                     <Label fx:id="roomName" layoutX="221.0" layoutY="3.0" onInputMethodTextChanged="#showText" text="" textFill="WHITE">
-                        <font>
-                           <Font name="Courier New" size="36.0" />
-                        </font>
-                     </Label>
                      <Label layoutX="272.0" layoutY="3.0" text="Welcome!" textFill="WHITE">
                         <font>
                            <Font name="Dubai Regular" size="24.0" />
@@ -44,7 +39,10 @@
                            <Font size="18.0" />
                         </font>
                      </Label>
-                     <Label fx:id="ppm" layoutX="311.0" layoutY="103.0" />
+                     <Label fx:id="ppm" layoutX="277.0" layoutY="104.0" prefHeight="22.0" prefWidth="83.0" textAlignment="CENTER">
+                        <font>
+                           <Font name="Calibri Light" size="18.0" />
+                        </font></Label>
                     </children></AnchorPane>
             </content>
         </Tab>

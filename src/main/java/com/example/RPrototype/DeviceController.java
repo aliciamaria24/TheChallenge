@@ -57,14 +57,14 @@ public class DeviceController {
     private Scene scene;
     private Parent root;
 
-    public void showText(ActionEvent event) throws IOException, SQLException {
-        System.out.println(roomName.getText());
-        String RoomName = roomName.getText();
-        JdbcDao jdbcDao = new JdbcDao();
-        jdbcDao.showRoomName(RoomName);
-        roomName.setText(RoomName);
-
-    }
+//    public void showText(ActionEvent event) throws IOException, SQLException {
+//        System.out.println(roomName.getText());
+//        String RoomName = roomName.getText();
+//        JdbcDao jdbcDao = new JdbcDao();
+//        jdbcDao.showRoomName(RoomName);
+//        roomName.setText(RoomName);
+//
+//    }
 
     /*
      * Deze methode zorgt ervoor dat je van Scene kan wisselen.
@@ -97,11 +97,11 @@ public class DeviceController {
     //static int x = 0;
 
     public void MeasureData(ActionEvent event) throws SQLException, IOException {
-        COMPortReader cp = new COMPortReader("COM3", 115200);
+        COMPortReader cp = new COMPortReader(comPortNora, baudRate);
         cp.openPort();
         int ppm = cp.readData();
         System.out.println(ppm);
-        if (ppm > 4000) {
+        if (ppm > SafePPM) {
             infoBox("Please open window to boost productivity", null, "ALERT!");
             MeasureData(event);
         }

@@ -25,10 +25,11 @@ public class COMPortReader {
     }
 
     public int readData() {
-        byte[] buffer = new byte[8192];
+        byte[] buffer = new byte[1000000];
         int bytesRead = 0;
         while (bytesRead == 0) {
             bytesRead = comPort.readBytes(buffer, buffer.length);
+
         }
 
         String data = new String(buffer, 0, bytesRead);
