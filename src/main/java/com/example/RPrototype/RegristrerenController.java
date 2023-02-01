@@ -91,7 +91,7 @@ public class RegristrerenController {
                     "Please enter a password");
             return;
         }
-        if (isSafeString(Username.getText()) && isSafeString(Password.getText())) {
+        if (isSafeString(Usernasme.getText()) && isSafeString(Password.getText())) {
             showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
                     "You are using a character that is not allowed. you can only use a-z A-Z ,.:;-@!");
             return;
